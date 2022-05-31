@@ -3,9 +3,6 @@ html, body {
     margin: 0;
     min-width: 555px;
     font-family: 'Lato', sans-serif;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
 }
 
 a:visited, a:hover, a:link {
@@ -17,27 +14,32 @@ a:visited, a:hover, a:link {
 body {
     display: grid;
     grid-template-areas:
-    "h"
-    "m"
-    "."
-    "f";
-    flex-direction: row;
+    "h h"
+    "m m"
+    "f f";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    flex-direction: column;
     background-image: url("images/wave_bottom.svg");
     background-repeat: no-repeat;
-    background-position: bottom center;
+    background-position: bottom left;
     background-attachment: fixed;
     background-size: contain;
     position: relative;
     overflow: hidden;
+    height: 100%;
 }
 
 /* header logo and title, aligned vertically */
 header {
     grid-area: h;
-    top: 0;
+    top: 0.3em;
     width: 100%;
     position: fixed;
     overflow: hidden;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 #logo {
@@ -57,12 +59,17 @@ header > h1 {
 
 /* Handling overflow in main */
 main {
+    height: 100%;
     grid-area: m;
     overflow-y: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8rem;
 }
 
 #subtitle {
-    font-size: 2.5rem;
+    font-size: 2.7rem;
 }
 
 #description {
@@ -72,15 +79,19 @@ main {
 footer {
     grid-area: f;
     font-size: smaller;
-    margin-top: 0.5em;
-    color: white;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+    color: #d2cae7;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    bottom: 0;
 }
 
-
-/* Scales the image while keeping the original ratio */
-img {
-    max-width: 100%;
-    height: auto;
+#address {
+    text-align: right;
+    font-style: normal;
 }
 
 #description, #action {
@@ -103,7 +114,7 @@ img {
     font-size: 16px;
     font-weight: 500;
     height: 4rem;
-    width: 8rem;
+    width: 9rem;
     padding: 0 1.6rem;
     text-align: center;
     text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
@@ -210,21 +221,6 @@ img {
     font-family: 'Lato', sans-serif;
     display: inline-block;
     width: 80%;
-}
-
-#eye {
-    background: #fff;
-    color: #333;
-    margin: 5.9px 0 0 0;
-    margin-left: -20px;
-    padding: 15px 9px 19px 0px;
-    border-radius: 0px 5px 5px 0px;
-    float: right;
-    position: relative;
-    right: 1%;
-    top: -.2%;
-    z-index: 5;
-    cursor: pointer;
 }
 
 /* Style for the button within the pop-up window */
