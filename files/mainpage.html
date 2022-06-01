@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="mainpage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Open+Sans&family=Lato&display=swap"
+          rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find The Way</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="index.js"></script>
 </head>
+
 <body>
+<header>
+    <img id="logo" src="images/favicon.png" alt="App Logo"/>
+    <h1><a href="mainpage.html" target="_blank">Find The Way</a></h1>
+</header>
+
+<main>
+    <div class="content" id="search">
+        <p>Enter your location, or leave the field empty and click on the button to get a list of stations:</p>
+        <div class="address-field"><input placeholder="Your location...">
+            <button class="findWayBtn" role="button" onclick="getResults()">Find The Way!</button></div>
+    </div>
+    <div class="content" id="results">
+        <p id="location"></p>
+        <ul id="list-of-results">
+
+        </ul>
+    </div>
+
+    <div class="other">
+    </div>
+</main>
+
+<footer id="footer">
+    <p id="copyright">&copy; 2022 Find The Way</p>
+    <address id="address">
+        Created by Florian Panek, Navdeep Singh, Anastasia Urusova, Hugo Hernan Vergara Vasquez<br>
+        Visit us at: <a href="https://www.fh-campuswien.ac.at/en/index.html" target="_blank">FH Campus Wien</a> | 1100
+        Vienna, Austria<br>
+    </address>
+</footer>
 
 </body>
 </html>
