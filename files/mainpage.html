@@ -20,17 +20,25 @@
     <h1><a href="mainpage.html" target="_blank">Find The Way</a></h1>
 </header>
 
+<nav class="topnav">
+
+</nav>
+
 <main>
     <div class="content" id="search">
-        <p>Enter your location, or leave the field empty and click on the button to get a list of stations:</p>
-        <div class="address-field"><input placeholder="Your location...">
+        <p>Welcome!</p>
+        <div class="radius">
+            <p>Choose the desired radius (m) in which the app should look for stations:</p>
+            <input type="number" min="80" max="1000" inputmode="numeric" placeholder="Radius">
+        </div>
+        <div class="address-field">
+            <p>Enter your location, or leave the field empty for the app to determine it automatically, and click on the button:</p>
+            <input type="text" placeholder="Your location">
             <button class="findWayBtn" role="button" onclick="getResults()">Find The Way!</button></div>
     </div>
     <div class="content" id="results">
         <p id="location"></p>
-        <ul id="list-of-results">
 
-        </ul>
     </div>
 
     <div class="other">

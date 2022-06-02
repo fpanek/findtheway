@@ -36,42 +36,26 @@ function getLocation() {
     }
 }
 
-function getSortOrder(prop) {
-    return function(a, b) {
-        if (a[prop] > b[prop]) {
-            return 1;
-        } else if (a[prop] < b[prop]) {
-            return -1;
-        }
-        return 0;
-    }
-}
-
-function jsonToArray(my_JSON_object) {
-    const obj = JSON.parse(my_JSON_object);
-    const res = [];
-
-    for(const i in obj) {
-        res.push(obj[i]);
-    }
-    return res;
-}
-
 function getResults() {
     getLocation();
     let request = new XMLHttpRequest();
-    request.open("GET", "../../files/testdata.json", false);
+    request.open("GET", "http://84.115.66.50:5000/getstations?long=48.20995&lat=16.37416&rad=80", false);
     request.send(null);
     let my_JSON_object = JSON.parse(request.responseText);
 
     request.onload = function() {
+        let ul = document.createElement("ul");
+        ul.setAttribute("id", "list-of-results");
+
         for (let x in my_JSON_object) {
             let listElement = document.createElement("li");
-            let itemName = document.createElement("span");
-            itemName.textContent = "Station: " + my_JSON_object[x].name + " [" + my_JSON_object[x].stationType + "], " + my_JSON_object[x].distance + "m";
-            listElement.append(itemName);
-            document.querySelector("#list-of-results").append(listElement);
+            listElement.appendChild(document.createTextNode(my_JSON_object[x].name + " [" + my_JSON_object[x].stationType + "], " + my_JSON_object[x].distance + "m"));
+            ul.appendChild(listElement);
         }
+        let title = document.createElement("p");
+        title.textContent = "Your results:";
+        document.querySelector("#results").appendChild(title);
+        document.querySelector("#results").appendChild(ul);
     }
     request.open("POST", "mainpage.html", true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

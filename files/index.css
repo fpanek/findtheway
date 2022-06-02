@@ -14,9 +14,9 @@ a:visited, a:hover, a:link {
 body {
     display: grid;
     grid-template-areas:
-    "h h"
-    "m m"
-    "f f";
+    "h h h"
+    "m m m"
+    "f f f";
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto 1fr auto;
     flex-direction: column;
@@ -28,6 +28,19 @@ body {
     position: relative;
     overflow: hidden;
     height: 100%;
+}
+
+@media (max-width: 642px) {
+    body {
+        grid-template-areas:
+        "h"
+        "m"
+        "f";
+        width: 100%;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        background-size: 642px;
+    }
 }
 
 /* header logo and title, aligned vertically */
@@ -72,8 +85,25 @@ main {
     font-size: 2.7rem;
 }
 
+@media (max-width: 642px) {
+    #subtitle {
+        font-size: 2rem;
+    }
+}
+
 #description {
     font-size: 1.2rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+}
+
+@media (max-width: 642px) {
+    #description {
+        max-width: 90%;
+    }
 }
 
 footer {
