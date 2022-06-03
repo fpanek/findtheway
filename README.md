@@ -25,4 +25,4 @@ This is a project made for the course 'Web Technologies' at FH Campus Wien by:
 1. To use the service, you need to register an account using the corresponding option on the main page
 2. After completing the registration process, you can log into your account
 3. A search radius can be chosen; by default, the app uses a radius of 200 meters
-4. The users needs to share their location in order for the stations list to load. The list is sorted by distance of each station to user's location.
+4. The users need to share their location in order for the stations list to load. The list is sorted by distance of each station to user's location.
