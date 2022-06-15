@@ -1,53 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html, body {
     height: 100%;
-    margin: 0;
-    min-width: 555px;
     font-family: 'Lato', sans-serif;
 }
 
-a:visited, a:hover, a:link {
-    color: inherit;
-    text-decoration: none;
-}
-
-/* grid layout */
-body {
-    display: grid;
-    grid-template-areas:
-    "h h h"
-    "m m m"
-    "f f f";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
-    flex-direction: column;
-    background-image: url("images/wave_bottom.svg");
-    background-repeat: no-repeat;
-    background-position: bottom left;
-    background-attachment: fixed;
-    background-size: contain;
-    position: relative;
-    overflow: hidden;
-    height: 100%;
-}
-
-@media (max-width: 642px) {
-    body {
-        grid-template-areas:
-        "h"
-        "m"
-        "f";
-        width: 100%;
-        grid-template-columns: auto;
-        grid-template-rows: auto;
-        background-size: 642px;
-    }
-}
-
-/* header logo and title, aligned vertically */
-header {
-    grid-area: h;
-    top: 0.3em;
-    width: 100%;
+.hero, .hero-content {
+    top: 10px;
     position: fixed;
     overflow: hidden;
     text-align: center;
@@ -55,225 +16,19 @@ header {
     align-items: center;
 }
 
-#logo {
-    width: 2em;
-    height: 2em;
-    vertical-align: middle;
+.avatar {
+    padding: 30px;
+    transition: .6s ease-in-out transform;
 }
 
-header > h1 {
-    display: inline;
-    vertical-align: middle;
-    font-family: 'DM Serif Display', serif;
-    color: #6356e5;
-    font-size: 2em;
-    font-weight: 100;
+.avatar:hover {
+    transform: rotate(-360deg) scale(1.1);
 }
 
-/* Handling overflow in main */
-main {
-    height: 100%;
-    grid-area: m;
-    overflow-y: auto;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    margin-top: 8rem;
-}
-
-#subtitle {
-    font-size: 2.7rem;
-}
-
-@media (max-width: 642px) {
-    #subtitle {
-        font-size: 2rem;
-    }
-}
-
-#description {
-    font-size: 1.2rem;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: center;
-    max-width: 500px;
-}
-
-@media (max-width: 642px) {
-    #description {
-        max-width: 90%;
-    }
-}
-
-footer {
-    grid-area: f;
-    font-size: smaller;
-    margin-right: 0.5em;
-    margin-left: 0.5em;
-    color: #d2cae7;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: relative;
+.footer {
+    position: absolute;
+    width: 100%;
     bottom: 0;
-}
-
-#address {
-    text-align: right;
-    font-style: normal;
-}
-
-#description, #action {
-    color: #767676;
-}
-
-#action {
-    font-size: smaller;
-}
-
-/* Design of the login and signup buttons */
-.signup-login-button {
-    background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
-    border-radius: 8px;
-    border-style: none;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    flex-shrink: 0;
-    font-size: 16px;
-    font-weight: 500;
-    height: 4rem;
-    width: 9rem;
-    padding: 0 1.6rem;
-    text-align: center;
-    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
-    transition: all .5s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    font-family: 'Lato', sans-serif;
-}
-
-.signup-login-button:hover {
-    box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
-    transition-duration: .1s;
-}
-
-.signup-login-button {
-    display: inline-block;
-    margin-right: 5px;
-}
-
-/* Resizes buttons depending on the screen resolution */
-@media (min-width: 768px) {
-    .login-button, .signup-button {
-        padding: 0 2.6rem;
-    }
-}
-
-/* Creates a pop-up window with frosted glass effect */
-.popup .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-150%) scale(0);
-    width: 330px;
-    height: 490px;
-    z-index: 2;
-    text-align: center;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(20px);
-    box-shadow:  0 1px 12px rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    z-index: 1;
-}
-
-/* Various effects for the X button within the pop-up window */
-.popup .close-btn {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 30px;
-    height: 30px;
-    opacity: 0.3;
-}
-
-.close-btn:hover {
-    opacity: 1;
-    cursor: pointer;
-}
-
-.close-btn:before, .close-btn:after {
-    position: absolute;
-    left: 15px;
-    content: ' ';
-    height: 30px;
-    width: 2px;
-    background-color: #333;
-}
-
-.close-btn:before {
-    transform: rotate(45deg);
-}
-.close-btn:after {
-    transform: rotate(-45deg);
-}
-
-.popup.active .content {
-    transition: all 300ms ease-in-out;
-    transform: translate(-50%,-50%) scale(1);
-}
-
-/* Style for text within the pop-up window */
-#login-header, #signup-header {
-    text-align: center;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #2c2c2c;
-    padding: 20px 10px 10px;
-    font-family: 'Open Sans', sans-serif;
-    border-bottom: 1px solid rgba(100, 100, 100, 0.37);
-}
-
-.input-field .validate {
-    padding: 16px;
-    font-size: 15px;
-    border-radius: 8px;
-    border: none;
-    margin-bottom: 12px;
-    color: #a4a3a3;
-    background: white;
-    box-shadow:  0 1px 12px rgba(0, 0, 0, 0.25);
-    outline: none;
-    font-family: 'Lato', sans-serif;
-    display: inline-block;
-    width: 80%;
-}
-
-/* Style for the button within the pop-up window */
-.inner-login-button, .inner-signup-button {
-    color: white;
-    font-size: 18px;
-    font-weight: 500;
-    margin-top: 20px;
-    padding: 20px 30px;
-    border-radius: 8px;
-    border: none;
-    background: #673FD7;
-    color: white;
-    box-shadow:  0 1px 12px rgba(0, 0, 0, 0.25);
-    transition: box-shadow .35s ease !important;
-    outline: none;
-    cursor: pointer;
-    font-family: 'Lato', sans-serif;
-}
-
-.inner-login-button:active, .inner-signup-button:active {
-    background: linear-gradient(145deg, #673FD7, #4f2ab0);
-    box-shadow: 5px 5px 10px #c2b5e7, -5px -5px 10px #C2B5E7FF;
-    border: none;
-    outline: none;
+    padding-right: 3em;
+    padding-left: 3em;
 }

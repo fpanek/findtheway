@@ -1,41 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html, body {
-    height: 100%;
-    margin: 0;
-    min-width: 555px;
     font-family: 'Lato', sans-serif;
-}
-
-a:visited, a:hover, a:link {
-    color: inherit;
-    text-decoration: none;
-}
-
-body {
-    display: grid;
-    grid-template-areas:
-    "header header"
-    "content other"
-    "content other"
-    "footer footer";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 5fr auto;
-    flex-direction: row;
-    position: relative;
-    overflow: hidden;
-    height: 100%;
-    gap: 10px;
-}
-
-header {
-    grid-area: header;
-    top: 0.3em;
-    width: 100%;
-    position: fixed;
-    overflow: hidden;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5rem;
 }
 
 #logo {
@@ -47,39 +15,13 @@ header {
 header > h1 {
     display: inline;
     vertical-align: middle;
-    font-family: 'DM Serif Display', serif;
-    color: #6356e5;
-    font-size: 2em;
-    font-weight: 100;
 }
 
-main {
-    grid-area: content;
-    overflow-y: auto;
-    text-align: left;
-    justify-content: left;
-    align-items: center;
-    margin-left: 2rem;
-}
-
-.other {
-    grid-area: other;
-}
-
-#footer {
-    grid-area: footer;
-    font-size: smaller;
-    margin-right: 0.5em;
-    margin-left: 0.5em;
-    color: #d2cae7;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: relative;
+.footer {
+    width: 100%;
+    position: absolute;
     bottom: 0;
+    padding-right: 3em;
+    padding-left: 3em;
 }
 
-#address {
-    text-align: right;
-    font-style: normal;
-}

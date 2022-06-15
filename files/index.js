@@ -1,28 +1,3 @@
-$(document).ready(function() {
-    let buttons = document.querySelectorAll(".close-btn");
-    buttons.forEach(function (btn) {
-      let parent = btn.parentElement.parentElement.id;
-        $(btn).click(function(){
-            if (parent === "popup-1") {
-                document.querySelector("#login-form").reset();
-            }
-            if (parent === "popup-2") {
-                document.querySelector("#signup-form").reset();
-            }
-        });
-    });
-});
-
-function toggleLoginPopup() {
-    document.querySelector("#popup-1")
-        .classList.toggle("active");
-}
-
-function toggleSignUpPopup() {
-    document.querySelector("#popup-2")
-        .classList.toggle("active");
-}
-
 function getLocation() {
     const result = document.querySelector("#location");
         if (navigator.geolocation) {
@@ -39,9 +14,10 @@ function getLocation() {
 function getResults() {
     getLocation();
     let request = new XMLHttpRequest();
-    request.open("GET", "http://84.115.66.50:5000/getstations?long=48.20995&lat=16.37416&rad=80", false);
+    request.open("GET", "testdata.json", false);
     request.send(null);
     let my_JSON_object = JSON.parse(request.responseText);
+    console.log(my_JSON_object);
 
     request.onload = function() {
         let ul = document.createElement("ul");

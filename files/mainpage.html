@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="cupcake">
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="mainpage.css">
@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Open+Sans&family=Lato&display=swap"
           rel="stylesheet">
+    <link href="/dist/output-mainpage.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find The Way</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
@@ -15,44 +16,158 @@
 </head>
 
 <body>
-<header>
-    <img id="logo" src="images/favicon.png" alt="App Logo"/>
-    <h1><a href="mainpage.html" target="_blank">Find The Way</a></h1>
-</header>
 
-<nav class="topnav">
-
-</nav>
-
-<main>
-    <div class="content" id="search">
-        <p>Welcome!</p>
-        <div class="radius">
-            <p>Choose the desired radius (m) in which the app should look for stations:</p>
-            <input type="number" min="80" max="1000" inputmode="numeric" placeholder="Radius">
+<div class="navbar bg-accent">
+    <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl" href="mainpage.html" target="_blank">
+            <img id="logo" src="images/favicon.png" alt="App Logo"/>
+            <h1>&nbsp;&nbsp;Find The Way</h1>
+        </a>
+    </div>
+    <div class="flex-none">
+        <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full">
+                    <img src="https://api.lorem.space/image/face?hash=33791"/>
+                </div>
+            </label>
+            <ul tabindex="0"
+                class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                <li>
+                    <a class="justify-between">
+                        Profile
+                    </a>
+                </li>
+                <li><a>Settings</a></li>
+                <li><a>Logout</a></li>
+            </ul>
         </div>
-        <div class="address-field">
-            <p>Enter your location, or leave the field empty for the app to determine it automatically, and click on the button:</p>
-            <input type="text" placeholder="Your location">
-            <button class="findWayBtn" role="button" onclick="getResults()">Find The Way!</button></div>
     </div>
-    <div class="content" id="results">
-        <p id="location"></p>
+</div>
 
+
+<div class="flex flex-row">
+    <div class="hero w-10/11 max-h-screen max-w-md bg-base-200" id="search-function">
+        <div class="hero-content w-full inset-y-8 left-0 bg-base-200 ">
+            <div class="w-full">
+                <h1 class="text-2xl font-bold mb-5">Welcome, ${name}!</h1>
+                <label class="label">
+                    <span class="label-text">Select desired radius in meter (optional):</span>
+                    <div class="dropdown dropdown-end">
+                        <label tabindex="0" class="btn btn-circle btn-ghost btn-xs text-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                 class="w-4 h-4 stroke-current">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </label>
+                        <div tabindex="0" class="card compact dropdown-content shadow bg-base-100 rounded-box w-64">
+                            <div class="card-body">
+                                <h2 class="card-title">Why is a radius necessary?</h2>
+                                <p>We use a radius value in order to determine which area around you to check for
+                                    transport stations. By default, this value is set to 200 meters, but you can
+                                    increase or decrease it to customize the results.</p>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <input type="range" min="100" max="1000" value="200" class="range range-md range-secondary" step="50"
+                       oninput="this.nextElementSibling.value = this.value"/>
+                <output class="w-full flex justify-between text-xs px-2">200</output>
+                <label class="label">
+                    <span class="label-text">Enter your address (optional):</span>
+                    <div class="dropdown dropdown-end">
+                        <label tabindex="0" class="btn btn-circle btn-ghost btn-xs text-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                 class="w-4 h-4 stroke-current">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </label>
+                        <div tabindex="0" class="card compact dropdown-content shadow bg-base-100 rounded-box w-64">
+                            <div class="card-body">
+                                <h2 class="card-title">How are the stations determined?</h2>
+                                <p>By clicking the below button, you will share with us your GPS coordinates, which we
+                                    will use to compose a list of stations near you. You may also enter an address
+                                    manually instead.</p>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <input type="text" placeholder="Your location" class="input input-bordered w-full"/>
+                <div class="mt-6">
+                    <button class="btn btn-primary w-full" role="button" onclick="getResults()">Find The Way!</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="other">
+    <div class="w-full h-full min-h-screen" id="list-of-stations">
+        <div class="w-full lg:flex-row-reverse">
+            <table class="table w-full">
+                <!-- head -->
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Station</th>
+                    <th>Type</th>
+                    <th>Distance</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody class="w-10/11">
+                <!-- row 1 -->
+                <tr class="hover">
+                    <th>1</th>
+                    <td>Schottentor</td>
+                    <td>Subway</td>
+                    <td>200</td>
+                    <th>
+                        <button class="btn btn-ghost btn-xs">details</button>
+                    </th>
+                </tr>
+                <!-- row 2 -->
+                <tr class="hover">
+                    <th>2</th>
+                    <td>Rathaus</td>
+                    <td>Tram</td>
+                    <td>400</td>
+                    <th>
+                        <button class="btn btn-ghost btn-xs">details</button>
+                    </th>
+                </tr>
+                <!-- row 3 -->
+                <tr class="hover">
+                    <th>3</th>
+                    <td>Volkstheater</td>
+                    <td>Bus</td>
+                    <td>600</td>
+                    <th>
+                        <button class="btn btn-ghost btn-xs">details</button>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</main>
 
-<footer id="footer">
-    <p id="copyright">&copy; 2022 Find The Way</p>
-    <address id="address">
-        Created by Florian Panek, Navdeep Singh, Anastasia Urusova, Hugo Hernan Vergara Vasquez<br>
-        Visit us at: <a href="https://www.fh-campuswien.ac.at/en/index.html" target="_blank">FH Campus Wien</a> | 1100
-        Vienna, Austria<br>
-    </address>
+    <div class="hero w-full " id="other">
+    </div>
+</div>
+<footer class="footer items-center p-2 bg-neutral text-neutral-content" id="footer">
+    <div class="items-center grid-flow-col">
+        <p>© 2022 Find The Way. All rights reserved.</p>
+    </div>
+    <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+        <a href="https://github.com/fpanek/findtheway" target="_blank">
+            <img alt="Github Logo" src="images/favicon-dark.svg" width="34" height="34" class="fill-current">
+        </a>
+        <a href="https://www.fh-campuswien.ac.at/en/index.html" target="_blank">
+            <img alt="FH Campus Wien Logo" src="images/logo_with.svg" width="65" height="34" class="fill-current">
+        </a>
+    </div>
 </footer>
+
 
 </body>
 </html>
