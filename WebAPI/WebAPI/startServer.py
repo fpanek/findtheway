@@ -35,7 +35,7 @@ def api_test():
     rad = request.args.get('rad', default=500)
     valuetoReturn = stationsWithinRadius(stationsFile, float(int(rad)/1000), long, lat)
     myjson = json.dumps(valuetoReturn)
-    #print(myjson["stations:"])
+    print(myjson[2])
     #valuetoReturn.sort(key = extract_distance(valuetoReturn))
     return json.dumps(valuetoReturn)
     #valueToReturn = {"longitude": long, "latitude": lat}
