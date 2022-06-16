@@ -1,3 +1,5 @@
+$('#body').css('min-height', screen.height);
+
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getResults);
