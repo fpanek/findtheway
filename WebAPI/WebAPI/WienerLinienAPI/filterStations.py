@@ -40,3 +40,24 @@ def stationsWithinRadius(filename, radius,longitude, latitude):
     #test = json.dumps(result)
     #print(test)
     return (result)
+
+
+def teeeest:
+    return "halloe"
+
+def bikeStationsWithinRadius(filename, radius,longitude, latitude):
+    # Opening JSON file
+    with open(filename, 'r') as openfile:
+        stations = json.load(openfile)
+    result = []
+    result.append("stations:")
+    for data in stations['features']:
+        lat,long = str(data['geometry']['coordinates']).split(',')
+        long = str(long).replace(']', '')
+        lat = str(lat).replace('[', '')
+        distance = dist(float(lat),float(long), float(latitude),float(longitude))
+        title = (data['id'])
+        stationName = (data['properties']['BEZEICHNUNG'])
+        wlNumber = (data['properties']['WL_NUMMER'])
+        #TODO - api for station type?..
+    return ("asdf")
