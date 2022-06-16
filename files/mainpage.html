@@ -47,7 +47,7 @@
 
 
 <div class="flex flex-row max-h-screen">
-    <div class="hero w-9/10 max-w-md bg-base-200 flex-none" id="search-function">
+    <div class="hero w-9/10 max-w-md bg-base-200 flex-initial" id="search-function">
         <div class="hero-content w-full inset-y-8 left-0 bg-base-200">
             <div class="w-full">
                 <h1 class="text-2xl font-bold mb-5">Welcome, ${name}!</h1>
@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    <div class="w-full min-h-screen grow overflow-y-auto" id="list-of-stations">
+    <div class="min-w-fit min-h-screen flex-auto overflow-y-auto" id="list-of-stations">
         <div class="w-full lg:flex-row-reverse overflow-y-auto">
             <table class="table w-full">
                 <!-- head -->
@@ -122,7 +122,7 @@
         </div>
     </div>
 
-    <div class="hero w-full " id="other">
+    <div class="hero w-full shrink" id="other">
     </div>
 </div>
 <footer class="footer items-center p-2 bg-neutral text-neutral-content" id="footer">
