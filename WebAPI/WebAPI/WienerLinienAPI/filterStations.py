@@ -1,4 +1,5 @@
 import json
+import string
 from math import radians, cos, sin, asin, sqrt
 def dist(lat1, long1, lat2, long2):
     #https://en.wikipedia.org/wiki/Haversine_formula
@@ -32,6 +33,8 @@ def stationsWithinRadius(filename, radius,longitude, latitude):
 
 
         if distance <= radius:
+            distance = str(int(distance * 1000))
+            distance += "m"
             station = {title: {'stationName': stationName, 'distance' : distance, 'stationType' : "TODO", 'wlNumber' : wlNumber}}
             result.append(station)
 
@@ -42,8 +45,6 @@ def stationsWithinRadius(filename, radius,longitude, latitude):
     return (result)
 
 
-def teeeest:
-    return "halloe"
 
 def bikeStationsWithinRadius(filename, radius,longitude, latitude):
     # Opening JSON file
