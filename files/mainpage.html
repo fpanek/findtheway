@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 </label>
-                <input type="range" min="100" max="1000" value="200" class="range range-md range-secondary" step="50"
+                <input id="chosenDistance" type="range" min="100" max="1000" value="200" class="range range-md range-secondary" step="50"
                        oninput="this.nextElementSibling.value = this.value"/>
                 <output class="w-full flex justify-between text-xs px-2">200</output>
                 <label class="label">
@@ -95,8 +95,8 @@
                     </div>
                 </label>
                 <input type="text" placeholder="Your location" class="input input-bordered w-full"/>
-                <div class="mt-6">
-                    <button class="btn btn-primary w-full" role="button" onclick="getResults()">Find The Way!</button>
+                <div class="mt-6" id="getResultsButton">
+                    <button class="btn btn-primary w-full" role="button" onclick="getLocation()">Find The Way!</button>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
 
     <div class="w-full h-full min-h-screen" id="list-of-stations">
         <div class="w-full lg:flex-row-reverse">
-            <table class="table w-full">
+            <table class="table w-full overflow-y-auto">
                 <!-- head -->
                 <thead>
                 <tr>
@@ -115,37 +115,8 @@
                     <th></th>
                 </tr>
                 </thead>
-                <tbody class="w-10/11">
-                <!-- row 1 -->
-                <tr class="hover">
-                    <th>1</th>
-                    <td>Schottentor</td>
-                    <td>Subway</td>
-                    <td>200</td>
-                    <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
-                    </th>
-                </tr>
-                <!-- row 2 -->
-                <tr class="hover">
-                    <th>2</th>
-                    <td>Rathaus</td>
-                    <td>Tram</td>
-                    <td>400</td>
-                    <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
-                    </th>
-                </tr>
-                <!-- row 3 -->
-                <tr class="hover">
-                    <th>3</th>
-                    <td>Volkstheater</td>
-                    <td>Bus</td>
-                    <td>600</td>
-                    <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
-                    </th>
-                </tr>
+                <tbody class="w-10/11" id="stations">
+
                 </tbody>
             </table>
         </div>

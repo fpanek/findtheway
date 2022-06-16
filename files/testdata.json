@@ -2,13 +2,13 @@
   {
       "distance": 0.27364238444094335,
       "name": "Hoher Markt",
-      "stationType": "TODO",
+      "stationType": "Bus",
       "wlNumber": 544
   },
   {
       "distance": 0.05283103555973135,
       "name": "Rotenturmstra\u00dfe",
-      "stationType": "TODO",
+      "stationType": "Subway",
       "wlNumber": 1119
   }
 ]
