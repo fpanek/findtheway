@@ -5,11 +5,6 @@ module.exports = {
       './files/index.js',
   ],
   theme: {
-    extend: {
-        backgroundImage: {
-            'waves': "url('/files/images/wave_bottom.svg')",
-        }
-    },
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
     daisyui: {

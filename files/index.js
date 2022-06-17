@@ -14,7 +14,7 @@ function getResults(position) {
     let userDistance = document.querySelector("#chosenDistance").value;
 
     let request = new XMLHttpRequest();
-    request.open("GET", `http://findtheway.geokhugo.com:5000/getstations?long=${lon}&lat=${lat}&rad=${userDistance}`, false);
+    request.open("GET", `//findtheway.geokhugo.com:5000/getstations?long=${lon}&lat=${lat}&rad=${userDistance}`, false);
     request.send(null);
     let my_JSON_object = JSON.parse(request.responseText);
     reload();
@@ -70,4 +70,12 @@ function reload() {
         child = stationsList.lastElementChild;
     }
     console.log("Refreshed");
+}
+
+function initMap() {
+    let mapProp = {
+        center: new google.maps.LatLng(48.210033,16.363449),
+        zoom: 12,
+    };
+    let map = new google.maps.Map(document.querySelector("#map"),mapProp);
 }
