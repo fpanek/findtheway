@@ -2445,6 +2445,10 @@ body[dir="rtl"] .checkbox:checked,
   height: fit-content;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .max-h-screen {
   max-height: 100vh;
 }
@@ -2803,6 +2807,10 @@ html, body {
 
   .md\:max-h-screen {
     max-height: 100vh;
+  }
+
+  .md\:max-h-full {
+    max-height: 100%;
   }
 
   .md\:min-h-screen {

@@ -59,7 +59,6 @@ function getResults(position) {
     request.open("POST", "mainpage.html", true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send("x=" + my_JSON_object);
-    console.log("end of index.js");
 }
 
 function reload() {
@@ -69,7 +68,6 @@ function reload() {
         stationsList.removeChild(child);
         child = stationsList.lastElementChild;
     }
-    console.log("Refreshed");
 }
 
 function initMap() {
