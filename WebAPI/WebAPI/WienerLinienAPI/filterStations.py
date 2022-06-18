@@ -36,7 +36,7 @@ def stationsWithinRadius(filename, radius,longitude, latitude):
 
         if distance <= radius:
             distance = int(distance * 1000)
-            stationInfo = {'stationID' : title, 'stationName': stationName, "distance" : distance, 'stationType' : "TODO", 'wlNumber' : wlNumber}
+            stationInfo = {'stationID' : title, 'stationName': stationName, "distance" : distance, 'stationType' : "TODO", 'wlNumber' : wlNumber, 'long' : long, 'lat' : lat}
             stationslist.append(stationInfo)
     stationsListOrderedByDistance = sorted(stationslist, key=lambda x: x['distance'])
     result.append({'stations': stationsListOrderedByDistance})
