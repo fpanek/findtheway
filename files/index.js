@@ -1,4 +1,14 @@
 $('#body').css('min-height', screen.height);
+let userPosition = null;
+let googleMap = null;
+
+function initMap() {
+    let mapProp = {
+        center: new google.maps.LatLng(48.210033,16.363449),
+        zoom: 12,
+    };
+    googleMap = new google.maps.Map(document.querySelector("#map"), mapProp);
+}
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -8,13 +18,26 @@ function getLocation() {
     }
 }
 
+function showCurrentPosition() {
+    let infoWindow = new google.maps.InfoWindow();
+    infoWindow.setPosition(userPosition);
+    infoWindow.setContent("You are here! ");
+    infoWindow.open(googleMap);
+    googleMap.setCenter(userPosition);
+    googleMap.setZoom(16);
+}
+
 function getResults(position) {
-    let lat = position.coords.latitude;
-    let lon = position.coords.longitude;
+    let latitude = position.coords.latitude; // 48.210033
+    let longitude = position.coords.longitude; // 16.363449
     let userDistance = document.querySelector("#chosenDistance").value;
+    userPosition = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+    };
 
     let request = new XMLHttpRequest();
-    request.open("GET", `//findtheway.geokhugo.com:5000/getstations?long=${lon}&lat=${lat}&rad=${userDistance}`, false);
+    request.open("GET", `//findtheway.geokhugo.com:5000/getstations?long=${latitude}&lat=${longitude}&rad=${userDistance}`, false);
     request.send(null);
     let my_JSON_object = JSON.parse(request.responseText);
     reload();
@@ -22,8 +45,8 @@ function getResults(position) {
     request.onload = function() {
         let count = 1;
         for (let x in my_JSON_object) {
-            for(let y in my_JSON_object[x]){
-                if(my_JSON_object[x][y]["stationName"] !== undefined) {
+            for (let y in my_JSON_object[x]) {
+                if (my_JSON_object[x][y]["stationName"] !== undefined) {
                     let tr = document.createElement("tr");
                     tr.setAttribute("class", "hover");
 
@@ -34,9 +57,18 @@ function getResults(position) {
                     let stationType = document.createElement("td");
                     let stationDistance = document.createElement("td");
 
-                    stationDistance.textContent = (my_JSON_object[x][y]["distance"]);
-                    stationType.textContent = (my_JSON_object[x][y]["stationType"]);
                     stationName.textContent = (my_JSON_object[x][y]["stationName"]);
+                    stationType.textContent = (my_JSON_object[x][y]["stationType"]);
+                    stationDistance.textContent = (my_JSON_object[x][y]["distance"] + "m");
+
+                    let stationPosition = { lat: Number(my_JSON_object[x][y]["long"]), lng: Number(my_JSON_object[x][y]["lat"]) };
+                    if (count <= 5) {
+                        const marker = new google.maps.Marker({
+                            position: stationPosition,
+                            label: String(count),
+                            map: googleMap,
+                        });
+                    }
 
                     let thButton = document.createElement("th");
                     let btn = document.createElement("button");
@@ -59,6 +91,7 @@ function getResults(position) {
     request.open("POST", "mainpage.html", true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send("x=" + my_JSON_object);
+    showCurrentPosition();
 }
 
 function reload() {
@@ -68,12 +101,5 @@ function reload() {
         stationsList.removeChild(child);
         child = stationsList.lastElementChild;
     }
-}
-
-function initMap() {
-    let mapProp = {
-        center: new google.maps.LatLng(48.210033,16.363449),
-        zoom: 12,
-    };
-    let map = new google.maps.Map(document.querySelector("#map"),mapProp);
+    initMap();
 }
