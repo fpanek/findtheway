@@ -1,13 +1,23 @@
 #required on Server #!/usr/local/bin/python3.8
 
+#TODO Abfahrtszeiten Request
+#TODO order list distance ascending
+#TODO type of station ausgeben, meherer auf einmal
+#TODO enhance json with long lat for google maps
+
 from flask import Flask, json
 from flask import request
 #from WienerLinienAPI.filterStations import stationsWithinRadius
 from WienerLinienAPI.filterStations import *
 #import WienerLinienAPI.filterStations
 from flask_cors import CORS
+import json
 
 from WienerLinienAPI.getNearbyStations import saveNearbyStationsIntoFile
+
+from collections import OrderedDict
+from operator import getitem
+
 
 #Test Data for stations:
 stations = [{"stations": {"station1": {"name": "asdf","distance": "1","stationType": "Bus"},"station2": {"name": "bbbb","distance": "3", "stationType": "train" }, "station3": {"name": "CCCCC","distance": "6",  "stationType": "Bus"	},	"station4": {"name": "DDDDDD",	 "distance": "2","stationType": "ubahn"  } }}]
@@ -24,7 +34,7 @@ def get_companies():
 
 def extract_distance(json):
     try:
-        return int(json['stations']['distance'])
+        return int(json['distance'])
     except KeyError:
         return 0
 
@@ -34,9 +44,6 @@ def api_test():
     lat = request.args.get('lat', default=00.00000)
     rad = request.args.get('rad', default=500)
     valuetoReturn = stationsWithinRadius(stationsFile, float(int(rad)/1000), long, lat)
-    myjson = json.dumps(valuetoReturn)
-    print(myjson[2])
-    #valuetoReturn.sort(key = extract_distance(valuetoReturn))
     return json.dumps(valuetoReturn)
     #valueToReturn = {"longitude": long, "latitude": lat}
     #return json.dumps(valueToReturn)
@@ -64,4 +71,4 @@ def api_test2():
 
 if __name__ == '__main__':
     saveNearbyStationsIntoFile(stationsFile)    #store stations locally during startup
-    api.run()
+    api.run(host='0.0.0.0', port='4999')

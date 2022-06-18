@@ -1,5 +1,7 @@
 import json
 import string
+import operator
+
 from math import radians, cos, sin, asin, sqrt
 def dist(lat1, long1, lat2, long2):
     #https://en.wikipedia.org/wiki/Haversine_formula
@@ -20,7 +22,8 @@ def stationsWithinRadius(filename, radius,longitude, latitude):
     with open(filename, 'r') as openfile:
         stations = json.load(openfile)
     result = []
-    result.append("stations:")
+    stationslist = []
+    #result.append("stations")
     for data in stations['features']:
         lat,long = str(data['geometry']['coordinates']).split(',')
         long = str(long).replace(']', '')
@@ -31,18 +34,15 @@ def stationsWithinRadius(filename, radius,longitude, latitude):
         wlNumber = (data['properties']['WL_NUMMER'])
         #TODO - api for station type?..
 
-
         if distance <= radius:
-            distance = str(int(distance * 1000))
-            distance += "m"
-            station = {title: {'stationName': stationName, 'distance' : distance, 'stationType' : "TODO", 'wlNumber' : wlNumber}}
-            result.append(station)
-
-
-
+            distance = int(distance * 1000)
+            stationInfo = {'stationID' : title, 'stationName': stationName, "distance" : distance, 'stationType' : "TODO", 'wlNumber' : wlNumber}
+            stationslist.append(stationInfo)
+    stationsListOrderedByDistance = sorted(stationslist, key=lambda x: x['distance'])
+    result.append({'stations': stationsListOrderedByDistance})
     #test = json.dumps(result)
     #print(test)
-    return (result)
+    return (json.loads(json.dumps(result[0])))
 
 
 
