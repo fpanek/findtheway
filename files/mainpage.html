@@ -21,7 +21,7 @@
     <div class="flex-1">
         <a class="btn btn-ghost normal-case text-xl" href="mainpage.html" target="_blank">
             <img id="logo" src="images/favicon.png" alt="App Logo"/>
-            <h1>&nbsp;&nbsp;Find The Way</h1>
+            <h2>&nbsp;&nbsp;Find The Way</h2>
         </a>
     </div>
     <div class="flex-none">
@@ -52,7 +52,7 @@
                 <h1 class="text-xl text-center font-bold mb-5 md:text-left">Welcome, ${name}!</h1>
                 <label for="chosenDistance" class="label">
                     <span class="label-text">Select desired radius in meter:</span>
-                    <div class="dropdown dropdown-end">
+                    <span class="dropdown dropdown-end">
                         <label tabindex="0" class="btn btn-circle btn-ghost btn-xs text-info">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  class="w-4 h-4 stroke-current">
@@ -68,30 +68,11 @@
                                     increase or decrease it to customize the results.</p>
                             </div>
                         </div>
-                    </div>
+                    </span>
                 </label>
                 <input id="chosenDistance" type="range" min="100" max="1000" value="200" class="range range-md range-secondary" step="50"
                        oninput="this.nextElementSibling.value = this.value"/>
                 <output class="w-full flex justify-between text-xs px-2">200</output>
-                <label class="label">
-                    <span style="display: none;" class="label-text">Enter your address (optional):</span>
-                    <div style="display: none;" class="dropdown dropdown-end">
-                        <label tabindex="0" class="btn btn-circle btn-ghost btn-xs text-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-4 h-4 stroke-current">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </label>
-                        <div tabindex="0" class="card compact dropdown-content shadow bg-base-100 rounded-box w-64">
-                            <div style="display: none;" class="card-body">
-                                <h2 style="display: none;" class="card-title">How are the stations determined?</h2>
-                                <p style="display: none;">By clicking the below button, you will share with us your GPS coordinates, which we
-                                    will use to compose a list of stations near you. You may also enter an address
-                                    manually instead.</p>
-                            </div>
-                        </div>
-                    </div>
-                </label>
                 <div class="mt-6" id="getResultsButton">
                     <button class="btn btn-primary w-full" onclick="getLocation()">Find The Way!</button>
                 </div>
