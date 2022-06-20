@@ -1,6 +1,11 @@
 import json
 import string
 import operator
+import csv
+import requests
+
+#StationInformation = "https://www.wienerlinien.at/ogd_realtime/monitor?stopId=147"
+StationInformation = "https://www.wienerlinien.at/ogd_realtime/monitor?diva="
 
 from math import radians, cos, sin, asin, sqrt
 def dist(lat1, long1, lat2, long2):
@@ -17,7 +22,7 @@ def dist(lat1, long1, lat2, long2):
     return km
 
 
-def stationsWithinRadius(filename, radius,longitude, latitude):
+def stationsWithinRadius(filename, radius,longitude, latitude, stopIDfile):
     # Opening JSON file
     with open(filename, 'r') as openfile:
         stations = json.load(openfile)
@@ -35,6 +40,7 @@ def stationsWithinRadius(filename, radius,longitude, latitude):
         #TODO - api for station type?..
 
         if distance <= radius:
+            stopIDs = []
             distance = int(distance * 1000)
             stationInfo = {'stationID' : title, 'stationName': stationName, "distance" : distance, 'stationType' : "TODO", 'wlNumber' : wlNumber, 'long' : long, 'lat' : lat}
             stationslist.append(stationInfo)

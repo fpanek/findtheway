@@ -1,5 +1,6 @@
 #required on Server #!/usr/local/bin/python3.8
 
+#General documenation of API https://www.wienerlinien.at/ogd_realtime/doku/ogd/wienerlinien-echtzeitdaten-dokumentation.pdf
 #TODO Abfahrtszeiten Request
 #TODO order list distance ascending
 #TODO type of station ausgeben, meherer auf einmal
@@ -7,22 +8,18 @@
 
 from flask import Flask, json
 from flask import request
-#from WienerLinienAPI.filterStations import stationsWithinRadius
 from WienerLinienAPI.filterStations import *
-#import WienerLinienAPI.filterStations
 from flask_cors import CORS
 import json
 
-from WienerLinienAPI.getNearbyStations import saveNearbyStationsIntoFile
-
-from collections import OrderedDict
-from operator import getitem
+from WienerLinienAPI.getNearbyStations import *
 
 
 #Test Data for stations:
 stations = [{"stations": {"station1": {"name": "asdf","distance": "1","stationType": "Bus"},"station2": {"name": "bbbb","distance": "3", "stationType": "train" }, "station3": {"name": "CCCCC","distance": "6",  "stationType": "Bus"	},	"station4": {"name": "DDDDDD",	 "distance": "2","stationType": "ubahn"  } }}]
 
 stationsFile = "stations.json"
+stationsStopIDFile = "stations_stopID.csv"
 
 api = Flask(__name__)
 CORS(api) #TODO WHAT does this line do?...
@@ -43,7 +40,7 @@ def api_test():
     long = request.args.get('long', default=00.00000)
     lat = request.args.get('lat', default=00.00000)
     rad = request.args.get('rad', default=500)
-    valuetoReturn = stationsWithinRadius(stationsFile, float(int(rad)/1000), long, lat)
+    valuetoReturn = stationsWithinRadius(stationsFile, float(int(rad)/1000), long, lat, stationsStopIDFile)
     return json.dumps(valuetoReturn)
     #valueToReturn = {"longitude": long, "latitude": lat}
     #return json.dumps(valueToReturn)
@@ -70,5 +67,6 @@ def api_test2():
 #http://localhost:$PORT/departureTimes?station=XYZ
 
 if __name__ == '__main__':
-    saveNearbyStationsIntoFile(stationsFile)    #store stations locally during startup
+    #saveNearbyStationsIntoFile(stationsFile, stationsStopIDFile)    #store stations locally during startup
+    saveNearbyStationsStopIDIntoFile(stationsStopIDFile)
     api.run(host='0.0.0.0', port='4999')
