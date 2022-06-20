@@ -48,9 +48,9 @@
 </div>
 
 
-<div class="flex flex-col gap-1 overflow-y-auto md:flex-row md:max-h-screen">
+<div id="container" class="flex flex-col gap-1 overflow-y-auto md:flex-row md:max-h-screen">
     <div class="hero bg-base-200 flex-wrap shrink-0 md:block md:basis-1/6 md:shrink-0 max-h-screen" id="search-function">
-        <div class="hero-content w-full inset-y-8 left-0 bg-base-200">
+        <div class="hero-content w-full max-w-screen-md inset-y-8 left-0 bg-base-200">
             <div class="w-full">
                 <h1 class="text-xl text-center font-bold mb-5 md:text-left">Welcome, ${name}!</h1>
                 <label class="label">
@@ -125,7 +125,7 @@
 
     <div class="hero w-full md:flex-initial max-h-fit md:min-h-screen" id="map">
 
-        <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh3JevLnXoQHLu2cj7HO6NQ_RD99wrSQs&callback=initMap&v=weekly" defer></script>
+        <script async src="//maps.googleapis.com/maps/api/js?key=AIzaSyDh3JevLnXoQHLu2cj7HO6NQ_RD99wrSQs&callback=initMap&v=weekly" defer></script>
     </div>
 </div>
 <footer class="footer items-center p-2 bg-neutral text-neutral-content" id="footer">

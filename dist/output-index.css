@@ -1937,6 +1937,12 @@ body[dir="rtl"] .checkbox:checked,
   border-bottom-left-radius: inherit;
 }
 
+.mockup-phone .display {
+  overflow: hidden;
+  border-radius: 40px;
+  margin-top: -25px;
+}
+
 .modal-open .modal-box, .modal-toggle:checked + .modal .modal-box, .modal:target .modal-box {
   --tw-translate-y: 0px;
   --tw-scale-x: 1;
@@ -2190,10 +2196,6 @@ body[dir="rtl"] .checkbox:checked,
   font-size: 0.875rem;
 }
 
-.btn-block {
-  width: 100%;
-}
-
 .btn-square:where(.btn-xs) {
   height: 1.5rem;
   width: 1.5rem;
@@ -2439,14 +2441,16 @@ body[dir="rtl"] .checkbox:checked,
   height: 1rem;
 }
 
+.h-min {
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+}
+
 .h-fit {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-}
-
-.h-auto {
-  height: auto;
 }
 
 .max-h-screen {
@@ -2461,12 +2465,6 @@ body[dir="rtl"] .checkbox:checked,
 
 .min-h-screen {
   min-height: 100vh;
-}
-
-.min-h-fit {
-  min-height: -webkit-fit-content;
-  min-height: -moz-fit-content;
-  min-height: fit-content;
 }
 
 .w-screen {
@@ -2497,20 +2495,12 @@ body[dir="rtl"] .checkbox:checked,
   width: 1rem;
 }
 
+.w-60 {
+  width: 15rem;
+}
+
 .w-64 {
   width: 16rem;
-}
-
-.w-max {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-}
-
-.min-w-fit {
-  min-width: -webkit-fit-content;
-  min-width: -moz-fit-content;
-  min-width: fit-content;
 }
 
 .max-w-2xl {
@@ -2521,6 +2511,10 @@ body[dir="rtl"] .checkbox:checked,
   max-width: 28rem;
 }
 
+.max-w-screen-md {
+  max-width: 768px;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2529,28 +2523,20 @@ body[dir="rtl"] .checkbox:checked,
   flex: none;
 }
 
-.flex-initial {
-  flex: 0 1 auto;
-}
-
-.flex-auto {
-  flex: 1 1 auto;
-}
-
-.shrink {
-  flex-shrink: 1;
+.shrink-0 {
+  flex-shrink: 0;
 }
 
 .grid-flow-col {
   grid-auto-flow: column;
 }
 
-.flex-row {
-  flex-direction: row;
-}
-
 .flex-col {
   flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .items-center {
@@ -2569,20 +2555,12 @@ body[dir="rtl"] .checkbox:checked,
   gap: 0.25rem;
 }
 
-.gap-2 {
-  gap: 0.5rem;
-}
-
 .gap-y-1 {
   row-gap: 0.25rem;
 }
 
 .overflow-y-auto {
   overflow-y: auto;
-}
-
-.overflow-y-scroll {
-  overflow-y: scroll;
 }
 
 .rounded-full {
@@ -2669,11 +2647,6 @@ body[dir="rtl"] .checkbox:checked,
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .text-xs {
@@ -2776,31 +2749,6 @@ html, body {
 }
 
 @media (min-width: 768px) {
-  .md\:btn-md {
-    height: 3rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    min-height: 3rem;
-    font-size: 0.875rem;
-  }
-
-  .md\:btn-block {
-    width: 100%;
-  }
-
-  .btn-square:where(.md\:btn-md) {
-    height: 3rem;
-    width: 3rem;
-    padding: 0px;
-  }
-
-  .btn-circle:where(.md\:btn-md) {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 9999px;
-    padding: 0px;
-  }
-
   .md\:block {
     display: block;
   }
@@ -2809,32 +2757,24 @@ html, body {
     max-height: 100vh;
   }
 
-  .md\:max-h-full {
-    max-height: 100%;
-  }
-
   .md\:min-h-screen {
     min-height: 100vh;
   }
 
-  .md\:max-w-md {
-    max-width: 28rem;
+  .md\:flex-initial {
+    flex: 0 1 auto;
+  }
+
+  .md\:shrink-0 {
+    flex-shrink: 0;
+  }
+
+  .md\:basis-1\/6 {
+    flex-basis: 16.666667%;
   }
 
   .md\:flex-row {
     flex-direction: row;
-  }
-
-  .md\:flex-row-reverse {
-    flex-direction: row-reverse;
-  }
-
-  .md\:justify-center {
-    justify-content: center;
-  }
-
-  .md\:gap-4 {
-    gap: 1rem;
   }
 
   .md\:gap-1 {
@@ -2849,29 +2789,12 @@ html, body {
     justify-self: end;
   }
 
-  .md\:overflow-y-scroll {
-    overflow-y: scroll;
-  }
-
   .md\:text-left {
     text-align: left;
-  }
-
-  .md\:text-center {
-    text-align: center;
-  }
-
-  .md\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .lg\:flex-row-reverse {
-    flex-direction: row-reverse;
-  }
-
   .lg\:text-5xl {
     font-size: 3rem;
     line-height: 1;

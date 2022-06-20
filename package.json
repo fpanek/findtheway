@@ -23,7 +23,9 @@
     "express": "^4.18.1",
     "fs": "^0.0.1-security",
     "lodash": "^4.17.21",
-    "require": "^0.4.4"
+    "mysql": "^2.18.1",
+    "require": "^0.4.4",
+    "sql.js": "^1.7.0"
   },
   "devDependencies": {
     "tailwindcss": "^3.0.24"
