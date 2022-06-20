@@ -665,6 +665,40 @@ html {
   --tw-backdrop-sepia:  ;
 }
 
+.container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
 .avatar {
   position: relative;
   display: inline-flex;
@@ -2441,8 +2475,10 @@ body[dir="rtl"] .checkbox:checked,
   height: 1rem;
 }
 
-.h-auto {
-  height: auto;
+.h-min {
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
 }
 
 .h-fit {
@@ -2451,20 +2487,14 @@ body[dir="rtl"] .checkbox:checked,
   height: fit-content;
 }
 
-.h-min {
-  height: -webkit-min-content;
-  height: -moz-min-content;
-  height: min-content;
+.max-h-screen {
+  max-height: 100vh;
 }
 
 .max-h-fit {
   max-height: -webkit-fit-content;
   max-height: -moz-fit-content;
   max-height: fit-content;
-}
-
-.max-h-screen {
-  max-height: 100vh;
 }
 
 .min-h-screen {
@@ -2499,12 +2529,12 @@ body[dir="rtl"] .checkbox:checked,
   width: 1rem;
 }
 
-.w-64 {
-  width: 16rem;
-}
-
 .w-60 {
   width: 15rem;
+}
+
+.w-64 {
+  width: 16rem;
 }
 
 .max-w-2xl {
@@ -2515,16 +2545,16 @@ body[dir="rtl"] .checkbox:checked,
   max-width: 28rem;
 }
 
+.max-w-screen-md {
+  max-width: 768px;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
 
 .flex-none {
   flex: none;
-}
-
-.flex-initial {
-  flex: 0 1 auto;
 }
 
 .shrink-0 {
@@ -2736,6 +2766,11 @@ html, body {
   body {
     position: absolute;
   }
+
+  #container {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
 }
 
 #logo {
@@ -2774,56 +2809,12 @@ header > h1 {
     min-height: 100vh;
   }
 
-  .md\:max-w-md {
-    max-width: 28rem;
-  }
-
-  .md\:flex-none {
-    flex: none;
-  }
-
   .md\:flex-initial {
     flex: 0 1 auto;
   }
 
   .md\:shrink-0 {
     flex-shrink: 0;
-  }
-
-  .md\:basis-1\/4 {
-    flex-basis: 25%;
-  }
-
-  .md\:basis-1\/3 {
-    flex-basis: 33.333333%;
-  }
-
-  .md\:basis-5 {
-    flex-basis: 1.25rem;
-  }
-
-  .md\:basis-10 {
-    flex-basis: 2.5rem;
-  }
-
-  .md\:basis-1\/2 {
-    flex-basis: 50%;
-  }
-
-  .md\:basis-auto {
-    flex-basis: auto;
-  }
-
-  .md\:basis-4\/12 {
-    flex-basis: 33.333333%;
-  }
-
-  .md\:basis-2\/6 {
-    flex-basis: 33.333333%;
-  }
-
-  .md\:basis-20 {
-    flex-basis: 5rem;
   }
 
   .md\:basis-1\/6 {
@@ -2848,16 +2839,6 @@ header > h1 {
 
   .md\:text-left {
     text-align: left;
-  }
-
-  .md\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
-  .md\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
   }
 }
 

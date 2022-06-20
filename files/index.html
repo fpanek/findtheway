@@ -29,7 +29,7 @@
                         <img class="shadow-lg shadow-cyan-500/50" src="images/favicon.png" alt="Find The Way Logo"/>
                     </div>
                 </div>
-                <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold">Find The Way around Vienna</h1>
+                <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold"><em>Find The Way</em> around Vienna</h1>
                 <h3 class="py-7 text-lg lg:text-xl">This simple web application helps you find the nearest public transport stops
                     with real-time departure times and distance to your current location.
                     Getting around Vienna has never been easier!</h3>
@@ -41,7 +41,7 @@
                         <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2 btn-primary">✕</label>
                         <h3 class="text-lg font-bold">Log in to your account</h3>
                         <div class="divider"></div>
-                        <form action="mainpage.html">
+                        <form method="POST">
                             <div class="form-control">
                                 <label class="label">
                                     <span class="label-text"></span>
@@ -49,7 +49,7 @@
                                 <label class="input-group">
                                     <span class="w-48">Email address</span>
                                     <input type="email" placeholder="user@site.com" autocomplete="username"
-                                           class="input input-bordered w-full" required/>
+                                           class="input input-bordered w-full" id="email" required/>
                                 </label>
                                 <label class="label">
                                     <span class="label-text"></span>
@@ -57,7 +57,7 @@
                                 <label class="input-group">
                                     <span class="w-48">Password</span>
                                     <input type="password" placeholder="Your password" autocomplete="current-password"
-                                           class="input input-bordered w-full" required/>
+                                           class="input input-bordered w-full" id="password" required/>
                                 </label>
                                 <div class="mt-6">
                                     <button class="btn btn-accent w-full">Login</button>
@@ -75,28 +75,28 @@
                                class="btn btn-sm btn-circle absolute right-2 top-2 btn-primary">✕</label>
                         <h3 class="text-lg font-bold">Create an email account</h3>
                         <div class="divider"></div>
-                        <form action="">
+                        <form method="POST">
                             <div class="form-control">
                                 <label class="label">
                                     <span class="label-text"></span>
                                 </label>
                                 <label class="input-group">
                                     <span class="w-48">First name</span>
-                                    <input type="text" class="input input-bordered w-full" required/>
+                                    <input type="text" class="input input-bordered w-full" id="firstName" required/>
                                 </label>
                                 <label class="label">
                                     <span class="label-text"></span>
                                 </label>
                                 <label class="input-group">
                                     <span class="w-48">Last name</span>
-                                    <input type="text" class="input input-bordered w-full" required/>
+                                    <input type="text" class="input input-bordered w-full" id="lastName" required/>
                                 </label>
                                 <label class="label">
                                     <span class="label-text"></span>
                                 </label>
                                 <label class="input-group">
                                     <span class="w-48">Email address</span>
-                                    <input type="email" placeholder="user@site.com" autocomplete="username" class="input input-bordered w-full"
+                                    <input type="email" placeholder="user@site.com" autocomplete="username" class="input input-bordered w-full" id="email2"
                                            required/>
                                 </label>
                                 <label class="label">
@@ -104,7 +104,7 @@
                                 </label>
                                 <label class="input-group">
                                     <span class="w-48">Password</span>
-                                    <input type="password" placeholder="Password" autocomplete="password" class="input input-bordered w-full"
+                                    <input type="password" placeholder="Password" autocomplete="password" class="input input-bordered w-full" id="password2"
                                            required/>
                                 </label>
                                 <div class="mt-6">
