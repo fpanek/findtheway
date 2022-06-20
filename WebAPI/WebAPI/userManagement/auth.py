@@ -26,7 +26,7 @@ def login():
                 #return response
                 #retiurn redirect("https://findtheway.geokhugo.com:804/mainpage.html")
                 myuuid = str(uuid.uuid1() )
-                response = make_response(redirect('https://findtheway.geokhugo.com:804/mainpage.html'))
+                response = make_response(redirect('https://findtheway.geokhugo.com:1234/mainpage.html'))
                 response.set_cookie("id", myuuid)
                 response.set_cookie("username", str(user.first_name))
 
