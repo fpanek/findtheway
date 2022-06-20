@@ -1,10 +1,12 @@
+#!/usr/local/bin/python3.
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 from flask_cors import CORS
-from  WebAPI.WienerLinienAPI.getNearbyStations import *
-from  WebAPI.WienerLinienAPI.filterStations import *
+from  WienerLinienAPI.getNearbyStations import *
+from  WienerLinienAPI.filterStations import *
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -22,7 +24,7 @@ def create_app():
     from .views import views
     from .auth import auth
     #from WebAPI.WienerLinienAPI import stations
-    from  WebAPI.WienerLinienAPI.stations import stations
+    from  WienerLinienAPI.stations import stations
     #from .stations  import stations
 
 

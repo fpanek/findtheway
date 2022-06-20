@@ -1,4 +1,4 @@
-#required on Server #!/usr/local/bin/python3.8
+#!/usr/local/bin/python3.8
 
 #General documenation of API https://www.wienerlinien.at/ogd_realtime/doku/ogd/wienerlinien-echtzeitdaten-dokumentation.pdf
 #TODO Abfahrtszeiten Request

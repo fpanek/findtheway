@@ -3,15 +3,16 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
-
+from flask import jsonify
+from flask import make_response
+import uuid
 
 auth = Blueprint('auth', __name__)
 
 
-@auth.route('/index', methods=['GET', 'POST'])
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        print("log in user..")
         email = request.form.get('email')
         password = request.form.get('password')
         print(email)
@@ -19,16 +20,38 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
-                flash('Logged in successfully!', category='success')
-                login_user(user, remember=True)
-                return redirect(url_for('views.mainpage'))
+                #response = jsonify(success=True, id ="xyz")
+                #response.status_code = 200
+                #response.set_cookie("sdfasdf", "asdf")
+                #return response
+                #retiurn redirect("https://findtheway.geokhugo.com:804/mainpage.html")
+                myuuid = str(uuid.uuid1() )
+                response = make_response(redirect('https://findtheway.geokhugo.com:804/mainpage.html'))
+                response.set_cookie("id", myuuid)
+                response.set_cookie("username", str(user.first_name))
+
+                return response
             else:
-                flash('Incorrect password, try again.', category='error')
+                response = jsonify(success=False, responseText="Password invalid",id ="xyz")
+                response.status_code = 400
+                response.set_cookie("sdfasdf", "asdf")
+                return response
         else:
-            flash('Email does not exist.', category='error')
+            #Email doesnt exist...
+            response = jsonify(success=False, responseText="Email doesnt exist", id ="xyz")
+            response.status_code = 400
+            response.set_cookie("sdfasdf", "asdf")
+            return response
+    
+    response = jsonify(success=True, id ="xyz")
+    response.status_code = 200
+    response.set_cookie("sdfasdf", "asdf")
+    return response
 
-    return render_template("index.html", user=current_user)
-
+    #LOGIN OK Response:
+    #return redirect("https://findtheway.geokhugo.com:804/mainpage.html?")
+    #LOGIN NOK Response
+    
 
 @auth.route('/logout')
 @login_required
@@ -37,32 +60,50 @@ def logout():
     return redirect(url_for('auth.index'))
 
 
-@auth.route('/index', methods=['GET', 'POST'])
+@auth.route('/signup', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
         first_name = request.form.get('firstName')
         last_name = request.form.get('lastName')
         email = request.form.get('new_email')
         password = request.form.get('new_password')
-
         user = User.query.filter_by(email=email).first()
         if user:
-            flash('Email already exists.', category='error')
+            response = jsonify(success=True, responseText="Email already exists", id ="xyz")
+            response.status_code = 400
+            response.set_cookie("sdfasdf", "asdf")
+            return response
         elif len(email) < 4:
-            flash('Email must be greater than 3 characters.', category='error')
+            response = jsonify(success=True, responseText="Email must be longer than 4 characters", id ="xyz")
+            response.status_code = 400
+            response.set_cookie("sdfasdf", "asdf")
+            return response
         elif len(first_name) < 2:
-            flash('First name must be greater than 1 character.', category='error')
+            response = jsonify(success=True, responseText="First name must be greater than 1 character", id ="xyz")
+            response.status_code = 400
+            response.set_cookie("sdfasdf", "asdf")
+            return response
         elif len(last_name) < 2:
-            flash('Last name must be greater than 1 character.', category='error')
-        elif len(password1) < 7:
-            flash('Password must be at least 7 characters.', category='error')
+            response = jsonify(success=True, responseText="Last Name must be greater than 1 character", id ="xyz")
+            response.status_code = 400
+            response.set_cookie("sdfasdf", "asdf")
+            return response
+        elif len(password) < 7:
+            response = jsonify(success=True, responseText="password must be longer than 7 characters", id ="xyz")
+            response.status_code = 400
+            response.set_cookie("sdfasdf", "asdf")
+            return response
         else:
-            new_user = User(first_name=first_name, last_name=last_name, email=email, password=generate_password_hash(
-                password, method='sha256'))
+            new_user = User(first_name=first_name, last_name=last_name, email=email, password=generate_password_hash(password, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
-            flash('Account created!', category='success')
-            return redirect(url_for('views.mainpage'))
+            response = jsonify(success=True, responseText="User successfully created.", id ="xyz")
+            response.status_code = 200
+            response.set_cookie("sdfasdf", "asdf")
+            return response
 
-    return render_template("index.html", user=current_user)
+    response = jsonify(success=True, id ="xyz")
+    response.status_code = 200
+    response.set_cookie("sdfasdf", "asdf")
+    return response
