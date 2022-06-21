@@ -19,6 +19,7 @@ This is a project made for the course 'Web Technologies' at FH Campus Wien by:
 - Python
 - Flask
 - Wiener Linien API
+- Google Maps API
 - Data provided as JSON
 
 ## How to use
