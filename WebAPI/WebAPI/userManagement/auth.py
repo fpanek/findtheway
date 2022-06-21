@@ -150,6 +150,9 @@ def updateuserelement():
     #respone = make_response()
     responses = []
     first_name = request.form.get('firstName')
+    print("first name retrieved in form:..")
+    print(first_name)
+    print(request)
     if first_name:
         print("updating usere......")
         updateFirstName = User.query.filter_by(email=str(email_session)).update(dict(first_name=first_name))
@@ -167,7 +170,7 @@ def updateuserelement():
     password = request.form.get('new_password')
     if password:
         print("updating password......")
-        updatingPassword = User.query.filter_by(email=str(email_session)).update(dict(password=password))
+        updatingPassword = User.query.filter_by(email=str(email_session)).update(dict(password=generate_password_hash(password, method='sha256')))
         db.session.commit()
     response = jsonify(success=True, responseText="updated settings")
     response.set_cookie("username", str(first_name))
@@ -180,7 +183,7 @@ def updateuserelement():
 
 
 #Delete User
-@auth.route('/deleteUser',  methods=['DELETE'])
+@auth.route('/deleteuser',  methods=['DELETE'])
 @isloggedin
 def deleteUserFromDB():
     email_session = request.cookies.get('email')
