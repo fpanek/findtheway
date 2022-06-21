@@ -26,11 +26,11 @@
     </div>
     <div class="flex-none">
         <div class="dropdown dropdown-end">
-            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                <div class="w-10 rounded-full">
-                    <img src="https://api.lorem.space/image/face?hash=33791" alt="avatar"/>
+            <div tabindex="0" class="btn btn-ghost btn-circle avatar placeholder">
+                <div class="bg-neutral-focus text-neutral-content rounded-full w-12">
+                    <span id="avatar_initial">M</span>
                 </div>
-            </label>
+            </div>
             <ul tabindex="0"
                 class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
@@ -38,7 +38,6 @@
                         Profile
                     </a>
                 </li>
-                <li><a>Settings</a></li>
                 <li><a>Logout</a></li>
             </ul>
         </div>
@@ -49,10 +48,17 @@
     <div class="hero bg-base-200 flex-wrap shrink-0 md:block md:basis-1/6 md:shrink-0 max-h-screen" id="search-function">
         <div class="hero-content w-full max-w-screen-md inset-y-8 left-0 bg-base-200">
             <div class="w-full">
-                <h1 class="text-xl text-center font-bold mb-5 md:text-left">Welcome, ${name}!</h1>
-                <label for="chosenDistance" class="label">
-                    <span class="label-text">Select desired radius in meter:</span>
-                    <span class="dropdown dropdown-end">
+                <h2 class="text-xl text-center font-bold mb-5 md:text-left" id="welcome">Welcome, </h2>
+                <label for="chosenDistance" class="label text-base" id="radiusLabel">Select desired radius in meter:</label>
+                <input id="chosenDistance" type="range" min="100" max="1000" value="200" class="range range-md range-secondary" step="50"
+                       oninput="this.nextElementSibling.value = this.value"/>
+                <output class="w-full flex justify-between text-xs px-2">200</output>
+                <div class="mt-6" id="getResultsButton">
+                    <button class="btn btn-primary w-full" onclick="getLocation()">Find The Way!</button>
+                </div>
+                <div class="label w-full">
+                    <label class="label label-text">How does this work?</label>
+                    <div class="dropdown dropdown-right">
                         <label tabindex="0" class="btn btn-circle btn-ghost btn-xs text-info">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  class="w-4 h-4 stroke-current">
@@ -62,19 +68,12 @@
                         </label>
                         <div tabindex="0" class="card compact dropdown-content shadow bg-base-100 rounded-box w-60">
                             <div class="card-body">
-                                <h2 class="card-title">Why is a radius necessary?</h2>
                                 <p>We use a radius value in order to determine which area around you to check for
                                     transport stations. By default, this value is set to 200 meters, but you can
                                     increase or decrease it to customize the results.</p>
                             </div>
                         </div>
-                    </span>
-                </label>
-                <input id="chosenDistance" type="range" min="100" max="1000" value="200" class="range range-md range-secondary" step="50"
-                       oninput="this.nextElementSibling.value = this.value"/>
-                <output class="w-full flex justify-between text-xs px-2">200</output>
-                <div class="mt-6" id="getResultsButton">
-                    <button class="btn btn-primary w-full" onclick="getLocation()">Find The Way!</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,7 +82,6 @@
     <div class="w-full h-min flex-wrap overflow-y-auto md:min-h-screen md:flex-initial" id="list-of-stations">
         <div class="w-full overflow-y-auto">
             <table class="table w-full h-fit overflow-y-auto">
-                <!-- head -->
                 <thead>
                 <tr>
                     <th></th>
@@ -93,23 +91,21 @@
                     <th></th>
                 </tr>
                 </thead>
-                <tbody class="w-10/11" id="stations">
-
+                <tbody id="stations">
                 </tbody>
             </table>
         </div>
     </div>
 
-    <div class="hero w-full md:flex-initial max-h-fit md:min-h-screen" id="map">
-
+    <div class="hero w-full h-full md:flex-initial md:min-h-screen" id="map">
         <script async src="//maps.googleapis.com/maps/api/js?key=AIzaSyDh3JevLnXoQHLu2cj7HO6NQ_RD99wrSQs&callback=initMap&v=weekly" defer></script>
     </div>
 </div>
-<footer class="footer items-center p-2 bg-neutral text-neutral-content" id="footer">
+<footer class="footer items-center p-2 bg-neutral text-neutral-content">
     <div class="items-center grid-flow-col">
         <p>© 2022 Find The Way. All rights reserved.</p>
     </div>
-    <div class="grid-flow-col gap-y-1 md:place-self-center md:justify-self-end md:gap-1">
+    <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
         <a href="https://github.com/fpanek/findtheway" target="_blank">
             <img alt="Github Logo" src="images/favicon-dark.svg" width="34" height="34" class="fill-current">
         </a>

@@ -2,6 +2,19 @@ $('#body').css('min-height', screen.height);
 let userPosition = null;
 let googleMap = null;
 
+$(document).ready( function () {
+    let username = getCookie("username");
+    if (username !== "") {
+        document.querySelector("#welcome").innerHTML += username + "!";
+        document.querySelector("#avatar_initial").innerHTML = username[0];
+    }
+});
+
+function getCookie(name) {
+    let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return match[2];
+}
+
 function initMap() {
     let mapProp = {
         center: new google.maps.LatLng(48.210033,16.363449),
