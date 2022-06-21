@@ -2,14 +2,6 @@ $('#body').css('min-height', screen.height);
 let userPosition = null;
 let googleMap = null;
 
-$(document).ready( function () {
-    let username = getCookie("username");
-    if (username !== "") {
-        document.querySelector("#welcome").innerHTML += username + "!";
-        document.querySelector("#avatar_initial").innerHTML = username[0];
-    }
-});
-
 function getCookie(name) {
     let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     if (match) return match[2];
@@ -51,6 +43,7 @@ function getResults(position) {
 
     let request = new XMLHttpRequest();
     request.open("GET", `//findtheway.geokhugo.com:5000/getstations?long=${latitude}&lat=${longitude}&rad=${userDistance}`, false);
+    request.withCredentials = true;
     request.send(null);
     let my_JSON_object = JSON.parse(request.responseText);
     reload();
