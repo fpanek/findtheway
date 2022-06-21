@@ -2,6 +2,11 @@ $('#body').css('min-height', screen.height);
 let userPosition = null;
 let googleMap = null;
 
+function getCookie(name) {
+    let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return match[2];
+}
+
 function initMap() {
     let mapProp = {
         center: new google.maps.LatLng(48.210033,16.363449),
@@ -38,6 +43,7 @@ function getResults(position) {
 
     let request = new XMLHttpRequest();
     request.open("GET", `//findtheway.geokhugo.com:5000/getstations?long=${latitude}&lat=${longitude}&rad=${userDistance}`, false);
+    request.withCredentials = true;
     request.send(null);
     let my_JSON_object = JSON.parse(request.responseText);
     reload();

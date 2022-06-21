@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find The Way: Find Transport Stations in Vienna</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
     <script src="index.js"></script>
 </head>
@@ -60,7 +60,6 @@
                                            class="input input-bordered w-full" name="password" required/>
                                 </label>
                                 <div class="mt-6">
-                                    <!--<button class="btn btn-accent w-full" onclick="makeRequest()">Login</button>-->
                                     <button class="btn btn-accent w-full">Login</button>
                                 </div>
                             </div>
@@ -105,21 +104,12 @@
                                 </label>
                                 <label class="input-group">
                                     <span class="w-48">Password</span>
-                                    <input type="password" placeholder="Password" autocomplete="password" class="input input-bordered w-full" name="new_password" 
+                                    <input type="password" placeholder="Password" autocomplete="current-password" class="input input-bordered w-full" name="new_password"
                                            required/>
                                 </label>
                                 <div class="mt-6">
                                     <button class="btn btn-accent w-full">Sign up</button>
                                 </div>
-				{% with messages = get_flashed_messages() %}
-  					{% if messages %}
-    						<ul class=flashes>
-    						{% for message in messages %}
-      							<li>{{ message }}</li>
-    						{% endfor %}
-    						</ul>
-  					{% endif %}
-				{% endwith %}
                             </div>
                         </form>
                     </div>

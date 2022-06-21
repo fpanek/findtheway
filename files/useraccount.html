@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="useraccount.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Open+Sans&family=Lato&display=swap"
+          rel="stylesheet">
+    <link href="/dist/output-useraccount.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find The Way: Account Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="index.js"></script>
+</head>
+
+<body>
+<nav class="navbar bg-accent">
+    <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl" href="mainpage.html" target="_blank">
+            <img id="logo" src="images/favicon.png" alt="App Logo"/>
+            <h2>&nbsp;&nbsp;Find The Way</h2>
+        </a>
+    </div>
+    <div class="flex-none">
+        <div class="dropdown dropdown-end">
+            <div tabindex="0" class="btn btn-ghost btn-circle avatar placeholder">
+                <div class="bg-neutral-focus text-neutral-content rounded-full w-12">
+                    <span id="avatar_initial">M</span>
+                </div>
+            </div>
+            <ul tabindex="0"
+                class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                <li>
+                    <a class="justify-between">
+                        Profile
+                    </a>
+                </li>
+                <li><a>Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">Account Information</h3>
+        <p class="mt-1 max-w-2xl text-sm text-gray-500">Personal details and settings</p>
+    </div>
+    <div class="border-t border-gray-200">
+        <dl>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">First name</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Max
+                    <button class="btn btn-ghost btn-xs">update</button>
+                </dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Last name</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Mustermann
+                    <button class="btn btn-ghost btn-xs">update</button>
+                </dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Email address</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">user@example.com
+                    <button class="btn btn-ghost btn-xs">update</button>
+                </dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Current password</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">testtest
+                    <button class="btn btn-ghost btn-xs">update</button>
+                </dd>
+            </div>
+        </dl>
+    </div>
+</div>
+
+<footer class="footer items-center p-2 bg-neutral text-neutral-content">
+    <div class="items-center grid-flow-col">
+        <p>© 2022 Find The Way. All rights reserved.</p>
+    </div>
+    <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+        <a href="https://github.com/fpanek/findtheway" target="_blank">
+            <img alt="Github Logo" src="images/favicon-dark.svg" width="34" height="34" class="fill-current">
+        </a>
+        <a href="https://www.fh-campuswien.ac.at/en/index.html" target="_blank">
+            <img alt="FH Campus Wien Logo" src="images/logo_with.svg" width="65" height="34" class="fill-current">
+        </a>
+    </div>
+</footer>
+
+</body>
+</html>
