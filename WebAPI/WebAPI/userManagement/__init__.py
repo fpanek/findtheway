@@ -7,6 +7,9 @@ from flask_login import LoginManager
 from flask_cors import CORS
 from  WienerLinienAPI.getNearbyStations import *
 from  WienerLinienAPI.filterStations import *
+from .views import views
+from .auth import auth
+from  WienerLinienAPI.stations import stations
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -21,11 +24,7 @@ def create_app():
     db.init_app(app)
     CORS(app)
     saveNearbyStationsStopIDIntoFile(stationsStopIDFile)
-    from .views import views
-    from .auth import auth
-    from  WienerLinienAPI.stations import stations
 
-    app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(stations, url_prefix='/')
 
