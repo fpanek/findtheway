@@ -12,7 +12,7 @@
     <title>Find The Way: Account Dashboard</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-    <script src="index.js"></script>
+    <script src="useraccount.js"></script>
 </head>
 
 <body>
@@ -52,27 +52,68 @@
         <dl>
             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt class="text-sm font-medium text-gray-500">First name</dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Max
-                    <button class="btn btn-ghost btn-xs">update</button>
-                </dd>
+                <label class="flex inline-flex">
+                    <input type="text" placeholder="Max" id="firstName" name="firstName" class="input input-bordered mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 input-sm" />
+                    <button class="btn btn-ghost btn-xs text-gray-900" id="change-first-name" onclick="changeData(firstName)"> update </button>
+                </label>
             </div>
             <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt class="text-sm font-medium text-gray-500">Last name</dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Mustermann
-                    <button class="btn btn-ghost btn-xs">update</button>
-                </dd>
+                <label class="flex inline-flex">
+                    <input type="text" placeholder="Mustermann" id="lastName" name="last_name" class="input input-bordered mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 input-sm" />
+                    <button class="btn btn-ghost btn-xs text-gray-900" onclick="changeData(last_name)"> update </button>
+                </label>
             </div>
             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt class="text-sm font-medium text-gray-500">Email address</dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">user@example.com
-                    <button class="btn btn-ghost btn-xs">update</button>
-                </dd>
+                <div class="flex inline-flex">
+                    <input type="text" placeholder="user@example.com" id="new_email" name="new_email" class="input input-bordered mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 input-sm" />
+                    <button class="btn btn-ghost btn-xs text-gray-900" onclick="changeData(new_email)"> update </button>
+                </div>
             </div>
             <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-gray-500">Current password</dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">testtest
-                    <button class="btn btn-ghost btn-xs">update</button>
-                </dd>
+                <dt>
+                    <label for="my-modal-pwd" class="btn btn-primary font-medium"> Change password </label>
+                    <input type="checkbox" id="my-modal-pwd" class="modal-toggle"/>
+                    <div class="modal">
+                        <div class="modal-box">
+                            <form id="change-pwd-form">
+                                <h3 class="font-bold text-lg">Change password</h3>
+                                <p class="py-4">Please enter your new password.</p>
+                                <div class="rounded-md shadow-sm -space-y-px">
+                                    <div>
+                                        <label for="new_password1" class="sr-only">Password</label>
+                                        <input id="new_password1" name="new_password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="New password">
+                                    </div>
+                                    <div>
+                                        <label for="new_password" class="sr-only">Password</label>
+                                        <input id="new_password" name="new_password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Repeat password">
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                    <label onclick="changeData(new_password)" class="btn w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">Save</label>
+                                    <label for="my-modal-pwd" class="btn mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </dt>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <div class="text-sm">
+                    <label for="my-modal-dlt" class="btn btn-modal font-medium"> Delete account </label>
+                    <input type="checkbox" id="my-modal-dlt" class="modal-toggle" />
+                    <div class="modal">
+                        <div class="modal-box">
+                            <h3 class="font-bold text-lg">Delete account</h3>
+                            <p class="py-4">Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.</p>
+                            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                <label onclick="deleteAccount()" class="btn w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">Delete</label>
+                                <label for="my-modal-dlt" class="btn mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </dl>
     </div>

@@ -117,8 +117,22 @@ function makeRequest() {
         body: new FormData(document.getElementById("inputform")),
     }).then(response => {
         if (response.status === 200) {
-            let my_JSON_object = JSON.parse(response.responseText);
             response.open("POST", "mainpage.html", true);
+            response.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        }
+    }).catch(error => {
+        console.error('There was an error!', error);
+    });
+}
+
+function signupRequest() {
+    const url = "https://findtheway.geokhugo.com:5000/signup";
+    fetch(url, {
+        method : "POST",
+        body: new FormData(document.getElementById("registration-form")),
+    }).then(response => {
+        if (response.status === 200) {
+            response.open("POST", "index.html", true);
             response.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         }
     }).catch(error => {
