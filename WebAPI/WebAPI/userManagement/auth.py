@@ -94,7 +94,7 @@ def logout():
     response.set_cookie("email", "")
     return response
 
-
+#TODO set cookies afte signup and redirect to mainpage
 @auth.route('/signup', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
@@ -125,13 +125,15 @@ def sign_up():
             response.set_cookie("sdfasdf", "asdf")
             return response
         else:
-            new_user = User(first_name=first_name, last_name=last_name, email=email, password=generate_password_hash(password, method='sha256'))
+            myuuid = str(uuid.uuid1() )
+            new_user = User(first_name=first_name, last_name=last_name, email=email, password=generate_password_hash(password, method='sha256'), cookieID=myuuid)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
-            response = jsonify(success=True, responseText="User successfully created.", id ="xyz")
-            response.status_code = 200
-            response.set_cookie("sdfasdf", "asdf")
+            response = make_response(redirect('https://findtheway.geokhugo.com:1234/mainpage.html'))
+            response.set_cookie("id", myuuid)
+            response.set_cookie("username", str(new_user.first_name))
+            response.set_cookie("email", str(new_user.email))
             return response
 
     response = jsonify(success=True, id ="xyz")
@@ -183,13 +185,16 @@ def updateuserelement():
 
 
 #Delete User
-@auth.route('/deleteuser',  methods=['DELETE'])
+@auth.route('/deleteuser',  methods=['DELETE', 'OPTIONS'])
 @isloggedin
 def deleteUserFromDB():
     email_session = request.cookies.get('email')
     deleteUser = User.query.filter_by(email=email_session).delete()
     db.session.commit()
     response = jsonify(success=True, responseText="User successfully deleted.")
+    response.headers.add('Access-Control-Allow-Origin', 'https://findtheway.geokhugo.com:1234')
+    response.headers.add('Access-Control-Allow-Credentials', 'true')
+    response.headers.add('Access-Control-Allow-Methods', 'DELETE')
     response.set_cookie("id", "")
     response.status_code = 200
     return response
