@@ -27,12 +27,10 @@ def saveNearbyStationsIntoFile(filename, stopFile):
             with open(stopFile, 'r') as file:
                 reader = csv.reader(file, delimiter=";")
                 for row in reader:
-                    # print(row[2])
                     if row[2].startswith(stationName):
                         diva = row[1] ##diva number of the station
                         if diva:
                             stationTypeResponse = requests.get( "https://www.wienerlinien.at/ogd_realtime/monitor?diva=" + diva).json()
-                            #print (stationTypeResponse['data'][''])
                             print(stationTypeResponse)
                             time.sleep(5)
 

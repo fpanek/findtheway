@@ -14,10 +14,6 @@ stations = [{"stations": {"station1": {"name": "asdf","distance": "1","stationTy
 stationsFile = "stations.json"
 stationsStopIDFile = "stations_stopID.csv"
 
-#api = Flask(__name__)
-#app = create_app()
-#CORS(api) #TODO WHAT does this line do?...
-
 
 stations = Blueprint('stations', __name__)
 
@@ -37,16 +33,13 @@ def api_test():
     cookie = request.cookies.get('id')
     email = request.cookies.get('email')
     user = User.query.filter_by(email=email).first()
-    #print(cookie)
-    #print(email)
-    #print(user.cookieID)
+
     if user:
         if user.cookieID == cookie:
         #if 1==1:
             print("Meine cookie id ist: ")
             print(cookie)
             response = make_response(json.dumps(valuetoReturn))
-            #response = jsonify(success=False, responseText="correct login data", id ="xyz")
             response.headers.add('Access-Control-Allow-Origin', 'https://findtheway.geokhugo.com:1234')
             response.headers.add('Access-Control-Allow-Credentials', 'true')
             return response
@@ -64,9 +57,6 @@ def api_test():
         response.headers.add('Access-Control-Allow-Origin', 'https://findtheway.geokhugo.com:1234')
         response.headers.add('Access-Control-Allow-Credentials', 'true')
         return response
-    #return json.dumps(valuetoReturn)
-    #valueToReturn = {"longitude": long, "latitude": lat}
-    #return json.dumps(valueToReturn)
     response = jsonify(success=False, responseText="elif NOK", id ="xyz")
     response.status_code = 400
     response.set_cookie("sdfasdf", "asdf") 
@@ -83,10 +73,8 @@ def api_test2():
     lat = request.args.get('lat', default=00.00000)
     rad = request.args.get('rad', default=500)
     valuetoReturn = stationsWithinRadius(stationsFile, float(int(rad)/1000), long, lat)
-    #valuetoReturn = bikeStationsWithinRadius()
     return json.dumps(valuetoReturn)  #dividide by 1000 for meters instead of km
-    #valueToReturn = {"longitude": long, "latitude": lat}
-    #return json.dumps(valueToReturn)
+
 
 
 
@@ -96,7 +84,3 @@ def api_test2():
 #Request for departure times:
 #http://localhost:$PORT/departureTimes?station=XYZ
 
-if __name__ == '__main__':
-    #saveNearbyStationsIntoFile(stationsFile, stationsStopIDFile)    #store stations locally during startup
-    saveNearbyStationsStopIDIntoFile(stationsStopIDFile)
-    api.run(host='0.0.0.0', port='4999')

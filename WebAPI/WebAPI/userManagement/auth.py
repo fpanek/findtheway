@@ -45,11 +45,6 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
-                #response = jsonify(success=True, id ="xyz")
-                #response.status_code = 200
-                #response.set_cookie("sdfasdf", "asdf")
-                #return response
-                #retiurn redirect("https://findtheway.geokhugo.com:804/mainpage.html")
                 myuuid = str(uuid.uuid1() )
                 response = make_response(redirect('https://findtheway.geokhugo.com:1234/mainpage.html'))
                 response.set_cookie("id", myuuid)
@@ -72,11 +67,6 @@ def login():
     response.status_code = 200
     return response
 
-    #LOGIN OK Response:
-    #return redirect("https://findtheway.geokhugo.com:804/mainpage.html?")
-    #LOGIN NOK Response
-    
-
 @auth.route('/logout')
 @isloggedin
 def logout():
@@ -94,7 +84,6 @@ def logout():
     response.set_cookie("email", "")
     return response
 
-#TODO set cookies afte signup and redirect to mainpage
 @auth.route('/signup', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
@@ -147,9 +136,6 @@ def sign_up():
 def updateuserelement():
     email_session = request.cookies.get('email')
     user = User.query.filter_by(email=email_session).first()        
-    #response = make_response(redirect('https://findtheway.geokhugo.com:1234/mainpage.html'))
-    #response = jsonify(responseText="Password invalid",id ="xyz")  
-    #respone = make_response()
     responses = []
     first_name = request.form.get('firstName')
     print("first name retrieved in form:..")

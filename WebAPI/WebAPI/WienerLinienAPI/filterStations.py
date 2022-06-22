@@ -46,8 +46,6 @@ def stationsWithinRadius(filename, radius,longitude, latitude, stopIDfile):
             stationslist.append(stationInfo)
     stationsListOrderedByDistance = sorted(stationslist, key=lambda x: x['distance'])
     result.append({'stations': stationsListOrderedByDistance})
-    #test = json.dumps(result)
-    #print(test)
     return (json.loads(json.dumps(result[0])))
 
 

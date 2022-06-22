@@ -23,15 +23,11 @@ def create_app():
     saveNearbyStationsStopIDIntoFile(stationsStopIDFile)
     from .views import views
     from .auth import auth
-    #from WebAPI.WienerLinienAPI import stations
     from  WienerLinienAPI.stations import stations
-    #from .stations  import stations
-
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(stations, url_prefix='/')
-
 
     from .models import User
 
