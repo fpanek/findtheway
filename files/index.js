@@ -139,3 +139,10 @@ function signupRequest() {
         console.error('There was an error!', error);
     });
 }
+
+function logOut() {
+    let request = new XMLHttpRequest();
+    request.open("POST", `https://findtheway.geokhugo.com:5000/logout`);
+    request.withCredentials = true;
+    location.href = "index.html";
+}
