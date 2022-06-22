@@ -8,7 +8,7 @@ window.onload = function () {
     request.onload = function() {
         if (my_JSON_object !== undefined) {
             document.getElementById("firstName").placeholder = my_JSON_object["first_name"];
-            document.getElementById("last_name").placeholder = my_JSON_object["last_name"];
+            document.getElementById("lastName").placeholder = my_JSON_object["last_name"];
             document.getElementById("email").placeholder = my_JSON_object["email"];
         }
     }
